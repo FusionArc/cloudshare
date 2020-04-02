@@ -2,11 +2,14 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'y_+h+3-uym7w%9&z)_1c208^p8_7uldfai4wpir#=2ewp*6+8m'
-
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'cloudshare.space']
+if DEBUG:
+    SECRET_KEY = 'y_+h+3-uym7w%9&z)_1c208^p8_7uldfai4wpir#=2ewp*6+8m'
+else:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+ALLOWED_HOSTS = ['cloudshare.space', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,7 +24,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    
+    'crispy_forms',
+    'storages',
+
+    'awards',
     'pages',
     'users',
 ]
@@ -93,10 +99,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
