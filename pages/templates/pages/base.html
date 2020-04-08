@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pages/styles.css' %}">
 
     {% if title %}
         <title>CloudShare - {{ title }}</title>
@@ -37,11 +37,11 @@
           <ul class="auth-links">
             {% if user.is_authenticated %}
             <h4>Welcome {{ user.username }}</h4>
-              <button><li><a href="{% url 'account_logout' %}">Log Out</a></li></button>
+              <li><a href="{% url 'account_logout' %}">Log Out</a></li>
             {% else %}
-              <button><li><a href="{% url 'account_login' %}">Log In</a></li></button>
-              <button><li><a href="{% url 'account_signup' %}">Register</a></li></button>
-              <button class="google"><li><a href="{% provider_login_url 'google' %}">Log In with Google</a></li></button>
+              <li><a href="{% url 'account_login' %}">Log In</a></li>
+              <li><a href="{% url 'account_signup' %}">Register</a></li>
+              <li class="google"><a href="{% provider_login_url 'google' %}">Log In with Google</a></li>
             {% endif %}
           </ul>
         </div>
